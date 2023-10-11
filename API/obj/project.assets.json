@@ -1728,11 +1728,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/unwana/Desktop/JamPetStore/API/API.csproj",
+      "projectUniqueName": "/home/unwana/Desktop/SkiKitStore/API/API.csproj",
       "projectName": "API",
-      "projectPath": "/home/unwana/Desktop/JamPetStore/API/API.csproj",
+      "projectPath": "/home/unwana/Desktop/SkiKitStore/API/API.csproj",
       "packagesPath": "/home/unwana/.nuget/packages/",
-      "outputPath": "/home/unwana/Desktop/JamPetStore/API/obj/",
+      "outputPath": "/home/unwana/Desktop/SkiKitStore/API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/unwana/.nuget/NuGet/NuGet.Config"
