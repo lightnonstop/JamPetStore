@@ -25,7 +25,7 @@ function App() {
 
   return (
     <>
-      <Typography variant="h1">Ski Kit Mart</Typography>
+      <Header />
       <Catalog products={products} addProduct={addProduct} />
     </>
   )
