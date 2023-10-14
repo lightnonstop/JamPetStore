@@ -14,7 +14,7 @@ function ProductDetails() {
             .then(response =>
                 setProduct(response)
             )
-            .catch(error => console.log(error))
+            .catch(error => console.log(error.response))
             .finally(() => setLoading(false));
     }, [id])
 
