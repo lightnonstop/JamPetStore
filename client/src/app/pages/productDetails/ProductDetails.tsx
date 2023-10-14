@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { Product } from "../../models/product";
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
+import { agent } from "../../api/agent";
 
 function ProductDetails() {
     const { id } = useParams<{ id: string }>();
@@ -9,9 +10,9 @@ function ProductDetails() {
     const [loading, setLoading] = useState<boolean>(true);
 
     useEffect(() => {
-        axios.get(`http://localhost:5000/api/products/${id}`)
+        id && agent.Catalog.details(parseInt(id))
             .then(response =>
-                setProduct(response.data)
+                setProduct(response)
             )
             .catch(error => console.log(error))
             .finally(() => setLoading(false));
