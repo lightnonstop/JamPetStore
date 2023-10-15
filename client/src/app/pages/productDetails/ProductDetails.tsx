@@ -20,7 +20,7 @@ function ProductDetails() {
 
     if (loading) return <h1>Loading...</h1>
 
-    if (!product) return <h1>Product not found</h1>
+    if (!product) return <NotFound />
 
     return (
         <Grid container spacing={6}>
