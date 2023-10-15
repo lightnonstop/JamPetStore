@@ -4,6 +4,7 @@ import { Product } from "../../models/product";
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import { agent } from "../../api/agent";
 import NotFound from "../../errors/NotFound";
+import LoadingComponent from "../../layout/LoadingComponent";
 
 function ProductDetails() {
     const { id } = useParams<{ id: string }>();
@@ -19,7 +20,7 @@ function ProductDetails() {
             .finally(() => setLoading(false));
     }, [id])
 
-    if (loading) return <h1>Loading...</h1>
+    if (loading) return <LoadingComponent message="Loading product..." />
 
     if (!product) return <NotFound />
 
