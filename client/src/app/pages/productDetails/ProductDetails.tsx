@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom"
 import { Product } from "../../models/product";
 import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
 import { agent } from "../../api/agent";
+import NotFound from "../../errors/NotFound";
 
 function ProductDetails() {
     const { id } = useParams<{ id: string }>();
@@ -14,7 +15,7 @@ function ProductDetails() {
             .then(response =>
                 setProduct(response)
             )
-            .catch(error => console.log(error.response))
+            .catch(error => console.log(error))
             .finally(() => setLoading(false));
     }, [id])
 
