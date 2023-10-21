@@ -2,11 +2,11 @@ import { Card, CardMedia, CardContent, Typography, CardActions, Button, CardHead
 import { Product } from "../app/models/product";
 import { Link } from "react-router-dom";
 
-interface ProductCard {
+interface ProductCardProps {
     product: Product;
 }
 
-function ProductCard({ product }: ProductCard) {
+function ProductCard({ product }: ProductCardProps) {
     return (
         <Card>
             <CardHeader
