@@ -34,8 +34,8 @@ function ProductCard({ product }: ProductCardProps) {
                 </Typography>
             </CardContent>
             <CardActions>
-                <Button size="small">Add to Cart</Button>
-                <LoadingButton loading={loading} component={Link} to={`/catalog/${product.id}`} size="small">View</LoadingButton>
+                <LoadingButton loading={loading} onClick={() => handleAddItem(product.id)} size="small">Add to Cart</LoadingButton>
+                <Button component={Link} to={`/catalog/${product.id}`} size="small">View</Button>
             </CardActions>
         </Card>
     )
