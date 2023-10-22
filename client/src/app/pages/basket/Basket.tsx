@@ -1,7 +1,3 @@
-import { useEffect, useState } from "react"
-import { BasketProps } from "../../models/basket";
-import { agent } from "../../api/agent";
-import LoadingComponent from "../../layout/LoadingComponent";
 import { IconButton, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from "@mui/material";
 import { Delete } from "@mui/icons-material";
 
