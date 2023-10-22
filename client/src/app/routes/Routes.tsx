@@ -20,7 +20,6 @@ export const router = createBrowserRouter([
             { path: 'about', element: <About /> },
             { path: 'contact', element: <Contact /> },
             { path: 'server-error', element: <ServerError /> },
-            { path: 'server-error', element: <ServerError /> },
             { path: 'not-found', element: <NotFound /> },
             { path: 'basket', element: <Basket /> },
             { path: '*', element: <Navigate replace to="/not-found" /> },
