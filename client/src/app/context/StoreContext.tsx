@@ -13,7 +13,7 @@ export const StoreContext = createContext<StoreContextValue | undefined>(undefin
 export function useStoreContext() {
     const context = useContext(StoreContext);
 
-    if (!context === undefined) {
+    if (context === undefined) {
         throw Error('Oops - we do not seem to be inside the context provider');
     }
 
