@@ -20,7 +20,7 @@ export function useStoreContext() {
     return context;
 }
 
-function StoreProvider({ children }: PropsWithChildren) {
+function StoreProvider({ children }: PropsWithChildren<unknown>) {
     const [basket, setBasket] = useState<BasketProps | null>(null);
 
     function removeItem(productId: number, quantity: number) {
