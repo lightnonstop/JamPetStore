@@ -1,12 +1,23 @@
 import { Card, CardMedia, CardContent, Typography, CardActions, Button, CardHeader, Avatar } from "@mui/material"
 import { Product } from "../app/models/product";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import { agent } from "../app/api/agent";
+import { LoadingButton } from "@mui/lab";
 
 interface ProductCardProps {
     product: Product;
 }
 
 function ProductCard({ product }: ProductCardProps) {
+    const [loading, setLoading] = useState(false);
+
+    function handleAddItem(productId: number) {
+        setLoading(true);
+        agent.Basket.addItem(productId)
+            .catch(error => console.log(error))
+            .finally(() => setLoading(false))
+    }
     return (
         <Card>
             <CardHeader
