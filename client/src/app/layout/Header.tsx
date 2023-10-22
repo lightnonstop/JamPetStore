@@ -29,6 +29,11 @@ interface HeaderProps {
     setDarkMode: Dispatch<SetStateAction<boolean>>;
 }
 function Header({ setDarkMode }: HeaderProps) {
+    const { basket } = useStoreContext();
+    const itemCount = useMemo(() => {
+        return basket?.items.reduce((totalItems, item) => totalItems + item.quantity, 0)
+    }, [basket?.items])
+
     return (
         <AppBar position="static" sx={{ mb: 4 }}>
             <Toolbar sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
