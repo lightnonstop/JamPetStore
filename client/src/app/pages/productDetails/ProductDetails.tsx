@@ -67,6 +67,17 @@ function ProductDetails() {
                         </TableBody>
                     </Table>
                 </TableContainer>
+                <Grid container spacing={2}>
+                    <Grid item xs={6}>
+                        <TextField variant="outlined" type="number" onChange={handleInputChange} label="Quantity in cart" fullWidth value={quantity} />
+                    </Grid>
+
+                    <Grid item xs={6}>
+                        <LoadingButton disabled={item?.quantity === quantity || !item && quantity === 0} loading={submitting} onClick={handleUpdateCart} sx={{ height: '55px' }} color="primary" size="large" variant="contained" fullWidth>
+                            {item ? 'Update Quantity' : 'Add to Cart'}
+                        </LoadingButton>
+                    </Grid>
+                </Grid>
             </Grid>
         </Grid>
     )
