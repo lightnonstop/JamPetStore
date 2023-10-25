@@ -10,6 +10,9 @@ function ProductDetails() {
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const [quantity, setQuantity] = useState(0);
+    const [submitting, setSubmitting] = useState(false);
+    const item = basket?.items.find(item => item.productId === product?.id);
 
     useEffect(() => {
         id && agent.Catalog.details(parseInt(id))
