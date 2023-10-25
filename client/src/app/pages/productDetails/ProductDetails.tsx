@@ -15,6 +15,7 @@ function ProductDetails() {
     const item = basket?.items.find(item => item.productId === product?.id);
 
     useEffect(() => {
+        if (item) setQuantity(item.quantity);
         id && agent.Catalog.details(parseInt(id))
             .then(response =>
                 setProduct(response)
