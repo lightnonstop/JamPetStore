@@ -1,12 +1,15 @@
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { Product } from "../../models/product";
-import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, Typography } from "@mui/material";
+import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, TextField, Typography } from "@mui/material";
 import { agent } from "../../api/agent";
 import NotFound from "../../errors/NotFound";
 import LoadingComponent from "../../layout/LoadingComponent";
+import { useStoreContext } from "../../context/StoreContext";
+import { LoadingButton } from "@mui/lab";
 
 function ProductDetails() {
+    const { basket, setBasket, removeItem } = useStoreContext();
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -22,7 +25,29 @@ function ProductDetails() {
             )
             .catch(error => console.log(error))
             .finally(() => setLoading(false));
-    }, [id])
+    }, [id, item])
+
+    const handleInputChange = function (ev: ChangeEvent<HTMLInputElement>) {
+        parseInt(ev?.currentTarget?.value) >= 0 && setQuantity(parseInt(ev?.currentTarget?.value));
+    }
+
+    const handleUpdateCart = function () {
+        if (!product) return;
+        setSubmitting(true);
+        if (!item || quantity > item.quantity) {
+            const updatedQuantity = item ? quantity - item.quantity : quantity;
+            agent.Basket.addItem(product.id, updatedQuantity)
+                .then(basket => setBasket(basket))
+                .catch(error => console.log(error))
+                .finally(() => setSubmitting(false))
+        } else {
+            const updatedQuantity = item.quantity - quantity;
+            agent.Basket.removeItem(product.id, updatedQuantity)
+                .then(() => removeItem(product.id, updatedQuantity))
+                .catch(error => console.log(error))
+                .finally(() => setSubmitting(false))
+        }
+    }
 
     if (loading) return <LoadingComponent message="Loading product..." />
 
