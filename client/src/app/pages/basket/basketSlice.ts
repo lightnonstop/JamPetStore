@@ -43,8 +43,7 @@ export const basketSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(addbasketItemAsync.pending, (state, action) => {
-      console.log(action);
-      state.status = "pendingAddItem";
+      state.status = "pendingAddItem" + action.meta.arg.productId;
     });
     builder.addCase(addbasketItemAsync.fulfilled, (state, action) => {
       state.basket = action.payload;
