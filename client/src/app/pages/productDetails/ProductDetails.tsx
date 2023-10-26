@@ -5,11 +5,13 @@ import { Divider, Grid, Table, TableBody, TableCell, TableContainer, TableRow, T
 import { agent } from "../../api/agent";
 import NotFound from "../../errors/NotFound";
 import LoadingComponent from "../../layout/LoadingComponent";
-import { useStoreContext } from "../../context/StoreContext";
 import { LoadingButton } from "@mui/lab";
+import { useAppDispatch, useAppSelector } from "../../store/configureStore";
+import { setBasket, removeItem } from "../basket/basketSlice";
 
 function ProductDetails() {
-    const { basket, setBasket, removeItem } = useStoreContext();
+    const { basket } = useAppSelector(state => state.basket);
+    const dispatch = useAppDispatch();
     const { id } = useParams<{ id: string }>();
     const [product, setProduct] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
@@ -37,13 +39,13 @@ function ProductDetails() {
         if (!item || quantity > item.quantity) {
             const updatedQuantity = item ? quantity - item.quantity : quantity;
             agent.Basket.addItem(product.id, updatedQuantity)
-                .then(basket => setBasket(basket))
+                .then(basket => dispatch(setBasket(basket)))
                 .catch(error => console.log(error))
                 .finally(() => setSubmitting(false))
         } else {
             const updatedQuantity = item.quantity - quantity;
             agent.Basket.removeItem(product.id, updatedQuantity)
-                .then(() => removeItem(product.id, updatedQuantity))
+                .then(() => dispatch(removeItem({ productId: product.id, quantity: updatedQuantity })))
                 .catch(error => console.log(error))
                 .finally(() => setSubmitting(false))
         }
