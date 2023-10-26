@@ -2,7 +2,7 @@ import { ShoppingCart } from "@mui/icons-material";
 import { AppBar, Badge, Box, IconButton, List, ListItem, Switch, Toolbar, Typography } from "@mui/material";
 import { Dispatch, SetStateAction, useMemo } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { useStoreContext } from "../context/StoreContext";
+import { useAppSelector } from "../store/configureStore";
 
 const links = {
     middle: [
@@ -30,7 +30,7 @@ interface HeaderProps {
     setDarkMode: Dispatch<SetStateAction<boolean>>;
 }
 function Header({ setDarkMode }: HeaderProps) {
-    const { basket } = useStoreContext();
+    const { basket } = useAppSelector(state => state.basket);
     const itemCount = useMemo(() => {
         return basket?.items.reduce((totalItems, item) => totalItems + item.quantity, 0)
     }, [basket?.items])
