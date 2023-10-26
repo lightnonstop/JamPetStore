@@ -47,7 +47,6 @@ export const basketSlice = createSlice({
       state.status = "pendingAddItem";
     });
     builder.addCase(addbasketItemAsync.fulfilled, (state, action) => {
-      console.log(action);
       state.basket = action.payload;
       state.status = "idle";
     });
