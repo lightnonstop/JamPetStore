@@ -41,7 +41,7 @@ function Basket() {
                                     ${(item.price / 100).toFixed(2)}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <LoadingButton loading={status === ('pendingRemoveItem' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId }))} color="error">
+                                    <LoadingButton loading={status === ('pendingRemoveItem' + item.productId + "rem")} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId, quantity: 1, name: "rem" }))} color="error">
                                         <Remove />
                                     </LoadingButton>
                                     {item.quantity}
@@ -53,7 +53,7 @@ function Basket() {
                                     ${((item.price / 100) * item.quantity).toFixed(2)}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <LoadingButton loading={status === ('pendingRemoveItem' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId, quantity: item.quantity }))} color="error">
+                                    <LoadingButton loading={status === ('pendingRemoveItem' + item.productId + "del")} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId, quantity: item.quantity, name: "del" }))} color="error">
                                         <Delete />
                                     </LoadingButton>
                                 </TableCell>
