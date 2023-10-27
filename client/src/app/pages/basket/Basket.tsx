@@ -4,7 +4,7 @@ import { LoadingButton } from "@mui/lab";
 import BasketSummary from "./BasketSummary";
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../store/configureStore";
-import { addBasketItemAsync, removeAllBasketItemsAsync, removeBasketItemAsync } from "./basketSlice";
+import { addBasketItemAsync, removeBasketItemAsync } from "./basketSlice";
 
 function Basket() {
     const { basket, status } = useAppSelector(state => state.basket);
@@ -41,7 +41,7 @@ function Basket() {
                                     ${(item.price / 100).toFixed(2)}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <LoadingButton loading={status.includes('pendingRemoveItem' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId, quantity: 1 }))} color="error">
+                                    <LoadingButton loading={status.includes('pendingRemoveItem' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId }))} color="error">
                                         <Remove />
                                     </LoadingButton>
                                     {item.quantity}
@@ -53,7 +53,7 @@ function Basket() {
                                     ${((item.price / 100) * item.quantity).toFixed(2)}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <LoadingButton loading={status.includes('pendingRemoveAllItems' + item.productId)} onClick={() => dispatch(removeAllBasketItemsAsync({ productId: item.productId, quantity: item.quantity }))} color="error">
+                                    <LoadingButton loading={status.includes('pendingRemoveAllItems' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId, quantity: item.quantity }))} color="error">
                                         <Delete />
                                     </LoadingButton>
                                 </TableCell>
