@@ -41,11 +41,11 @@ function Basket() {
                                     ${(item.price / 100).toFixed(2)}
                                 </TableCell>
                                 <TableCell align="center">
-                                    <LoadingButton loading={status.includes('pendingRemoveItem' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId }))} color="error">
+                                    <LoadingButton loading={status === ('pendingRemoveItem' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId }))} color="error">
                                         <Remove />
                                     </LoadingButton>
                                     {item.quantity}
-                                    <LoadingButton loading={status.includes('pendingAddItem' + item.productId)} onClick={() => dispatch(addBasketItemAsync({ productId: item.productId }))} color="secondary">
+                                    <LoadingButton loading={status === ('pendingAddItem' + item.productId)} onClick={() => dispatch(addBasketItemAsync({ productId: item.productId }))} color="secondary">
                                         <Add />
                                     </LoadingButton>
                                 </TableCell>
@@ -53,7 +53,7 @@ function Basket() {
                                     ${((item.price / 100) * item.quantity).toFixed(2)}
                                 </TableCell>
                                 <TableCell align="right">
-                                    <LoadingButton loading={status.includes('pendingRemoveAllItems' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId, quantity: item.quantity }))} color="error">
+                                    <LoadingButton loading={status === ('pendingRemoveAllItems' + item.productId)} onClick={() => dispatch(removeBasketItemAsync({ productId: item.productId, quantity: item.quantity }))} color="error">
                                         <Delete />
                                     </LoadingButton>
                                 </TableCell>
