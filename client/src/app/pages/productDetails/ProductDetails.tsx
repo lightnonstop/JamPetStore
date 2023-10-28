@@ -43,7 +43,7 @@ function ProductDetails() {
         }
     }
 
-    if (loading) return <LoadingComponent message="Loading product..." />
+    if (productStatus.includes('pending')) return <LoadingComponent message="Loading product..." />
 
     if (!product) return <NotFound />
 
