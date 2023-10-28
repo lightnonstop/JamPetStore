@@ -9,12 +9,12 @@ import { agent } from "../../api/agent";
 const productsAdapter = createEntityAdapter<Product>();
 
 export const fetchProductsAsync = createAsyncThunk<Product[]>(
-  "catalog/fetchProductAsync",
-  async () => {
+  "catalog/fetchProductsAsync",
+  async (_, _thunkAPI) => {
     try {
       return await agent.Catalog.list();
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      return _thunkAPI.rejectWithValue({ error: error.data });
     }
   }
 );
