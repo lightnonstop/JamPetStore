@@ -18,6 +18,18 @@ export const fetchProductsAsync = createAsyncThunk<Product[]>(
     }
   }
 );
+
+export const fetchProductAsync = createAsyncThunk<Product, number>(
+  "catalog/fetchProductAsync",
+  async (productId, _thunkAPI) => {
+    try {
+      return await agent.Catalog.details(productId);
+    } catch (error: any) {
+      return _thunkAPI.rejectWithValue({ error: error.data });
+    }
+  }
+);
+
 export const catalogSlice = createSlice({
   name: "catalog",
   initialState: productsAdapter.getInitialState({
