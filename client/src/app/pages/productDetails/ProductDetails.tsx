@@ -18,13 +18,8 @@ function ProductDetails() {
 
     useEffect(() => {
         if (item) setQuantity(item.quantity);
-        id && agent.Catalog.details(parseInt(id))
-            .then(response =>
-                setProduct(response)
-            )
-            .catch(error => console.log(error))
-            .finally(() => setLoading(false));
-    }, [id, item])
+        if (!product) dispatch(fetchProductAsync(parseInt(id!)))
+    }, [dispatch, id, item, product])
 
     const handleInputChange = function (ev: ChangeEvent<HTMLInputElement>) {
         parseInt(ev?.currentTarget?.value) >= 0 && setQuantity(parseInt(ev?.currentTarget?.value));
