@@ -8,8 +8,6 @@ import { agent } from "../../api/agent";
 
 const productsAdapter = createEntityAdapter<Product>();
 
-console.log(productsAdapter);
-
 export const fetchProductsAsync = createAsyncThunk<Product[]>(
   "catalog/fetchProductAsync",
   async () => {
