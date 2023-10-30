@@ -4,6 +4,7 @@ using API.Entities;
 using API.Extensions;
 using API.RequestHelpers;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Controllers
@@ -41,6 +42,15 @@ namespace API.Controllers
             if (product == null) return NotFound();
 
             return product;
+        }
+
+        [HttpGet("filters")]
+        public async Task<ActionResult> GetFilters()
+        {
+            var brands = await context.Products.Select(p => p.Brand).Distinct().ToListAsync();
+            var types = await context.Products.Select(p => p.Type).Distinct().ToListAsync();
+
+            return Ok(new { brands, types });
         }
     }
 }
