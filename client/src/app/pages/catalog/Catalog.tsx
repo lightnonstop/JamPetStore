@@ -3,6 +3,13 @@ import { useEffect } from "react";
 import LoadingComponent from "../../layout/LoadingComponent";
 import { useAppDispatch, useAppSelector } from "../../store/configureStore";
 import { fetchFilters, fetchProductsAsync, productSelectors } from "./catalogSlice";
+import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, Pagination, Paper, Radio, RadioGroup, TextField, Typography } from "@mui/material";
+
+const sortOptions = [
+    { value: 'name', label: 'Alphabetical' },
+    { value: 'priceDesc', label: 'Price - High to Low' },
+    { value: 'price', label: 'Price - Low to High' },
+]
 
 function Catalog() {
     const products = useAppSelector(productSelectors.selectAll)
