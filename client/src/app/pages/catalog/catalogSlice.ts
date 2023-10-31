@@ -7,6 +7,15 @@ import { Product } from "../../models/product";
 import { agent } from "../../api/agent";
 import { RootState } from "../../store/configureStore";
 
+interface CatalogState {
+  productsLoaded: boolean;
+  filtersLoaded: boolean;
+  status: string;
+  brands: string[];
+  types: string[];
+  productParams: ProductParams;
+}
+
 const productsAdapter = createEntityAdapter<Product>();
 
 export const fetchProductsAsync = createAsyncThunk<Product[]>(
