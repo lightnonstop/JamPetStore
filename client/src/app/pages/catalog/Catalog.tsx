@@ -2,9 +2,10 @@ import ProductList from "../../../components/ProductList";
 import { useEffect } from "react";
 import LoadingComponent from "../../layout/LoadingComponent";
 import { useAppDispatch, useAppSelector } from "../../store/configureStore";
-import { fetchFilters, fetchProductsAsync, productSelectors } from "./catalogSlice";
-import { Box, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, Pagination, Paper, Radio, RadioGroup, Typography } from "@mui/material";
+import { fetchFilters, fetchProductsAsync, productSelectors, setProductParams } from "./catalogSlice";
+import { Box, Checkbox, FormControlLabel, FormGroup, Grid, Pagination, Paper, Typography } from "@mui/material";
 import ProductSearch from "./ProductSearch";
+import RadioButtonGroup from "../../../components/RadioButtonGroup";
 
 const sortOptions = [
     { value: 'name', label: 'Alphabetical' },
@@ -66,8 +67,6 @@ function Catalog() {
                     <Pagination color="secondary" size="large" count={10} page={2} />
                 </Box>
             </Grid>
-
-
         </Grid>
     )
 }
