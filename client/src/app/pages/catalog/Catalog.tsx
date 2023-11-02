@@ -35,13 +35,11 @@ function Catalog() {
                     <ProductSearch />
                 </Paper>
                 <Paper sx={{ mb: 2, p: 2 }}>
-                    <FormControl component="fieldset">
-                        <RadioGroup>
-                            {sortOptions.map(({ value, label }, index) => (
-                                <FormControlLabel key={index} value={value} control={<Radio />} label={label} />
-                            ))}
-                        </RadioGroup>
-                    </FormControl>
+                    <RadioButtonGroup
+                        selectedValue={productParams.orderBy}
+                        options={sortOptions}
+                        onChange={event => dispatch(setProductParams({ orderBy: event.target.value }))}
+                    />
                 </Paper>
                 <Paper sx={{ mb: 2, p: 2 }}>
                     <FormGroup>
