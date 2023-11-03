@@ -103,10 +103,6 @@ export const catalogSlice = createSlice({
       productsAdapter.setAll(state, action.payload);
       state.status = "idle";
       state.productsLoaded = true;
-      console.log(
-        "builder.addCase ~ state.productsLoaded:",
-        state.productsLoaded
-      );
     });
     builder.addCase(fetchProductsAsync.rejected, (state, action) => {
       state.status = "idle";
