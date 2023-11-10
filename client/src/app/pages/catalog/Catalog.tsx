@@ -7,6 +7,7 @@ import ProductSearch from "./ProductSearch";
 import RadioButtonGroup from "../../../components/RadioButtonGroup";
 import CheckboxButtons from "../../../components/CheckboxButtons";
 import AppPagination from "../../../components/AppPagination";
+import LoadingComponent from "../../layout/LoadingComponent";
 
 const sortOptions = [
     { value: 'name', label: 'Alphabetical' },
@@ -28,7 +29,7 @@ function Catalog() {
         if (!filtersLoaded) dispatch(fetchFilters());
     }, [dispatch, filtersLoaded])
 
-    if (status.includes('pending') || !metaData) return <LoadingComponent message="Loading products..." />
+    if (!filtersLoaded) return <LoadingComponent message="Loading products..." />
 
     return (
         <Grid container columnSpacing={4}>
