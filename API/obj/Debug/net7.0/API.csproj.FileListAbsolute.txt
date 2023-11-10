@@ -67,3 +67,16 @@
 /home/unwana/Desktop/SkiKitStore/API/obj/Debug/net7.0/API.pdb
 /home/unwana/Desktop/SkiKitStore/API/obj/Debug/net7.0/API.genruntimeconfig.cache
 /home/unwana/Desktop/SkiKitStore/API/obj/Debug/net7.0/ref/API.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.Internal.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.Extensions.Identity.Core.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.Extensions.Identity.Stores.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.Extensions.Options.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.IdentityModel.JsonWebTokens.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.IdentityModel.Logging.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/Microsoft.IdentityModel.Tokens.dll
+/home/unwana/Desktop/SkiKitStore/API/bin/Debug/net7.0/System.IdentityModel.Tokens.Jwt.dll
