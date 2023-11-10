@@ -55,7 +55,9 @@ function Catalog() {
             </Grid>
             <Grid item xs={3} />
             <Grid item xs={9} sx={{ mb: 2 }}>
-                <AppPagination metaData={metaData} onPageChange={(page: number) => dispatch(setPageNumber({ pageNumber: page }))} />
+                {metaData && (
+                    <AppPagination metaData={metaData} onPageChange={(page: number) => dispatch(setPageNumber({ pageNumber: page }))} />
+                )}
             </Grid>
         </Grid>
     )
