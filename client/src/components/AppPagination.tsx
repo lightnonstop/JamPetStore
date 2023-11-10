@@ -1,8 +1,8 @@
 import { Box, Typography, Pagination } from "@mui/material"
-import { MetaData } from "../app/models/pagination"
+import { MetaData } from "../app/models/pagination";
 
 interface AppPaginationProps {
-    metaData: MetaData | null;
+    metaData: MetaData;
     onPageChange: (page: number) => void;
 
 }
