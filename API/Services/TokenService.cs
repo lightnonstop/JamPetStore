@@ -32,7 +32,7 @@ namespace API.Services
                 claims.Add(new Claim(ClaimTypes.Role, role));
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWTSettings: TokenKey"]));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWTSettings:TokenKey"]));
             var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha512);
 
             var tokenOptions = new JwtSecurityToken(
