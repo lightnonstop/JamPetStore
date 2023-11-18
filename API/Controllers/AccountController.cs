@@ -1,5 +1,6 @@
 using API.DTOs;
 using API.Entities;
+using API.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,19 +9,25 @@ namespace API.Controllers
     public class AccountController : BaseApiController
     {
         private readonly UserManager<User> userManager;
+        private readonly TokenService tokenService;
 
-        public AccountController(UserManager<User> userManager)
+        public AccountController(UserManager<User> userManager, TokenService tokenService)
         {
             this.userManager = userManager;
+            this.tokenService = tokenService;
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<User>> Login(LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await userManager.FindByNameAsync(loginDto.Username);
             if (user == null || !await userManager.CheckPasswordAsync(user, loginDto.Password)) return Unauthorized();
 
-            return user;
+            return new UserDto
+            {
+                Email = user.Email,
+                Token = await tokenService.GenerateToken(user)
+            };
         }
 
         [HttpPost("register")]
