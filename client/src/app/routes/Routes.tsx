@@ -9,6 +9,8 @@ import ServerError from "../errors/ServerError";
 import NotFound from "../errors/NotFound";
 import Basket from "../pages/basket/Basket";
 import Checkout from "../pages/checkout/Checkout";
+import Login from "../pages/account/Login";
+import Register from "../pages/account/Register";
 
 export const router = createBrowserRouter([
     {
@@ -24,6 +26,8 @@ export const router = createBrowserRouter([
             { path: 'not-found', element: <NotFound /> },
             { path: 'basket', element: <Basket /> },
             { path: 'checkout', element: <Checkout /> },
+            { path: 'login', element: <Login /> },
+            { path: 'register', element: <Register /> },
             { path: '*', element: <Navigate replace to="/not-found" /> },
         ]
     }
