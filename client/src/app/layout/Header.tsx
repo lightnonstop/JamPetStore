@@ -3,6 +3,7 @@ import { AppBar, Badge, Box, IconButton, List, ListItem, Switch, Toolbar, Typogr
 import { Dispatch, SetStateAction, useMemo } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { useAppSelector } from "../store/configureStore";
+import SignedInMenu from "./SignedInMenu";
 
 const links = {
     middle: [
@@ -31,6 +32,7 @@ interface HeaderProps {
 }
 function Header({ setDarkMode }: HeaderProps) {
     const { basket } = useAppSelector(state => state.basket);
+    const { user } = useAppSelector(state => state.account);
     const itemCount = useMemo(() => {
         return basket?.items.reduce((totalItems, item) => totalItems + item.quantity, 0)
     }, [basket?.items])
@@ -60,18 +62,22 @@ function Header({ setDarkMode }: HeaderProps) {
                             <ShoppingCart />
                         </Badge>
                     </IconButton>
-                    <List sx={{ display: "flex" }}>
-                        {links.right.map(({ title, path }) => (
-                            <ListItem
-                                component={NavLink}
-                                to={path}
-                                key={path}
-                                sx={navLinkStyle}
-                            >
-                                {title.toUpperCase()}
-                            </ListItem>
-                        ))}
-                    </List>
+                    {user ? (
+                        <SignedInMenu />
+                    ) : (
+                        <List sx={{ display: "flex" }}>
+                            {links.right.map(({ title, path }) => (
+                                <ListItem
+                                    component={NavLink}
+                                    to={path}
+                                    key={path}
+                                    sx={navLinkStyle}
+                                >
+                                    {title.toUpperCase()}
+                                </ListItem>
+                            ))}
+                        </List>
+                    )}
                 </Box>
             </Toolbar>
         </AppBar>
