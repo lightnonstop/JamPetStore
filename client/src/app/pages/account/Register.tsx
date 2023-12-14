@@ -19,9 +19,32 @@ function Register() {
                 Register
             </Typography>
             <Box component="form" onSubmit={handleSubmit(data => agent.Account.register(data))} noValidate sx={{ mt: 1 }}>
-                <TextField margin="normal" fullWidth label="Username" autoFocus {...register('username', { required: 'Username is required.' })} error={!!errors.username} helperText={errors.username?.message as string} />
-                <TextField margin="normal" fullWidth label="Username" autoFocus {...register('email', { required: 'Email is required.' })} error={!!errors.email} helperText={errors.email?.message as string} />
-                <TextField margin="normal" fullWidth id="password" label="Password" type="password" autoFocus {...register('password', { required: 'Password is required.' })} error={!!errors.password} helperText={errors.password?.message as string} />
+                <TextField
+                    margin="normal"
+                    fullWidth
+                    label="Username"
+                    autoFocus
+                    {...register('username', { required: 'Username is required.' })}
+                    error={!!errors.username}
+                    helperText={errors.username?.message as string}
+                />
+                <TextField
+                    margin="normal"
+                    fullWidth
+                    label="Email"
+                    {...register('email', { required: 'Email is required.' })}
+                    error={!!errors.email}
+                    helperText={errors.email?.message as string}
+                />
+                <TextField
+                    margin="normal"
+                    fullWidth id="password"
+                    label="Password"
+                    type="password"
+                    {...register('password', { required: 'Password is required.' })}
+                    error={!!errors.password}
+                    helperText={errors.password?.message as string}
+                />
                 <LoadingButton disabled={!isValid} loading={isSubmitting} type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                     Register In
                 </LoadingButton>
