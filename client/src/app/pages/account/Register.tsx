@@ -32,6 +32,7 @@ function Register() {
                     margin="normal"
                     fullWidth
                     label="Email"
+                    type="email"
                     {...register('email', { required: 'Email is required.' })}
                     error={!!errors.email}
                     helperText={errors.email?.message as string}
