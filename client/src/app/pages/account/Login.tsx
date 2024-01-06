@@ -27,8 +27,22 @@ function Login() {
                 Sign in
             </Typography>
             <Box component="form" onSubmit={handleSubmit(submitForm)} noValidate sx={{ mt: 1 }}>
-                <TextField margin="normal" fullWidth label="Username" autoFocus {...register('username', { required: 'Username is required.' })} error={!!errors.username} helperText={errors.username?.message as string} />
-                <TextField margin="normal" fullWidth id="password" label="Password" type="password" autoFocus {...register('password', { required: 'Password is required.' })} error={!!errors.password} helperText={errors.password?.message as string} />
+                <TextField margin="normal"
+                    fullWidth
+                    label="Username"
+                    autoFocus
+                    {...register('username', { required: 'Username is required.' })}
+                    error={!!errors.username}
+                    helperText={errors.username?.message as string}
+                />
+                <TextField
+                    margin="normal"
+                    fullWidth id="password"
+                    label="Password"
+                    type="password"
+                    {...register('password', { required: 'Password is required.' })}
+                    error={!!errors.password}
+                    helperText={errors.password?.message as string} />
                 <LoadingButton disabled={!isValid} loading={isSubmitting} type="submit" fullWidth variant="contained" sx={{ mt: 3, mb: 2 }}>
                     Sign In
                 </LoadingButton>
