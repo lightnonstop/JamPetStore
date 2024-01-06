@@ -1,14 +1,30 @@
 import { LockOutlined } from "@mui/icons-material"
 import { Avatar, Box, Container, Grid, Paper, TextField, Typography } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 import { agent } from "../../api/agent";
+import { toast } from "react-toastify";
 
 function Register() {
-    const { register, handleSubmit, formState: { isSubmitting, errors, isValid } } = useForm({
+    const navigate = useNavigate();
+    const { register, handleSubmit, setError, formState: { isSubmitting, errors, isValid } } = useForm({
         mode: 'onTouched',
     });
+
+    const handleApiErrors = function (errors: any) {
+        if (errors) {
+            errors.forEach((error: string) => {
+                if (error.includes('Password')) {
+                    setError('password', { message: error })
+                } else if (error.includes('Email')) {
+                    setError('email', { message: error })
+                } else if (error.includes('Username')) {
+                    setError('username', { message: error })
+                }
+            });
+        }
+    }
 
     return (
         <Container component={Paper} maxWidth="sm" sx={{ display: "flex", flexDirection: "column", alignItems: "center", p: 4 }}>
@@ -18,7 +34,14 @@ function Register() {
             <Typography>
                 Register
             </Typography>
-            <Box component="form" onSubmit={handleSubmit(data => agent.Account.register(data))} noValidate sx={{ mt: 1 }}>
+            <Box
+                component="form"
+                onSubmit={handleSubmit(data => agent.Account.register(data)
+                    .then(() => {
+                        toast.success("Registration successful - Login");
+                        navigate('/login');
+                    })
+                    .catch(error => handleApiErrors(error)))} noValidate sx={{ mt: 1 }}>
                 <TextField
                     margin="normal"
                     fullWidth
@@ -33,7 +56,15 @@ function Register() {
                     fullWidth
                     label="Email"
                     type="email"
-                    {...register('email', { required: 'Email is required.' })}
+                    {...register('email',
+                        {
+                            required: 'Email is required.',
+                            pattern: {
+                                value: /^\w+[\w-.]*@\w+((-\w+)|(\w*))\.[a-z]{2,3}$/,
+                                message: "Email address not valid."
+                            }
+                        })
+                    }
                     error={!!errors.email}
                     helperText={errors.email?.message as string}
                 />
@@ -42,7 +73,15 @@ function Register() {
                     fullWidth id="password"
                     label="Password"
                     type="password"
-                    {...register('password', { required: 'Password is required.' })}
+                    {...register('password',
+                        {
+                            required: 'Password is required.',
+                            pattern: {
+                                value: /(?=^.{6,10}$)(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;*()_+}{&quot;:;'?/&gt;.&lt;,])(?!.*\s).*$/,
+                                message: "Password does not meet requirement."
+                            }
+                        })
+                    }
                     error={!!errors.password}
                     helperText={errors.password?.message as string}
                 />
